@@ -1,6 +1,7 @@
 import './App.css';
 import TodoTable from './components/TodoTable';
 import React, {useState} from 'react'
+import NewTodoForm from './components/NewTodoForm';
 
 function App() {
   // todos - state variable, setTodos can change todo and re-render application.
@@ -13,12 +14,13 @@ function App() {
   ) 
 
   // Onclick function.
-  const addTodo = () => {
+  // Pass in description and assigned value.
+  const addTodo = (description, assigned) => {
     if (todos.length > 0) {
       const newTodo = {
         rowNumber: todos.length + 1, 
-        rowDesc: 'New Todo', 
-        rowAssigned: 'User'
+        rowDesc: description, 
+        rowAssigned: assigned
       };
       setTodos(todos => [...todos, newTodo]);
     }
@@ -35,6 +37,7 @@ function App() {
           <button className='btn btn-primary' onClick={addTodo}>
             Add new todo
           </button>
+          <NewTodoForm addTodo={addTodo}/>
         </div>
       </div>
     </div>
