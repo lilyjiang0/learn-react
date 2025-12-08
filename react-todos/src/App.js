@@ -1,14 +1,18 @@
 import './App.css';
 import TodoTable from './components/TodoTable';
+import React, {useState} from 'react'
 
 function App() {
-  const todos = [
+  // todos - state variable, setTodos can change todo and re-render application.
+  const [todos, setTodos] = useState([
     {rowNumber: 1, rowDesc: 'Feed puppy', rowAssigned: 'Anna'},
     {rowNumber: 2, rowDesc: 'Feed kitty', rowAssigned: 'Elsa'},
     {rowNumber: 3, rowDesc: 'Exercise', rowAssigned: 'Elsa'},
     {rowNumber: 4, rowDesc: 'Clean room', rowAssigned: 'Eric'}
   ]
+  ) 
 
+  // Onclick function.
   const addTodo = () => {
     if (todos.length > 0) {
       const newTodo = {
@@ -16,8 +20,7 @@ function App() {
         rowDesc: 'New Todo', 
         rowAssigned: 'User'
       };
-      todos.push(newTodo);
-      console.log(todos);
+      setTodos(todos => [...todos, newTodo]);
     }
   }
 
