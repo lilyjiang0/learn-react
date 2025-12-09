@@ -4,6 +4,9 @@ import React, {useState} from 'react'
 import NewTodoForm from './components/NewTodoForm';
 
 function App() {
+
+  const [showAddTodoForm, setShowAddTodoForm] = useState(false);
+
   // todos - state variable, setTodos can change todo and re-render application.
   const [todos, setTodos] = useState([
     {rowNumber: 1, rowDesc: 'Feed puppy', rowAssigned: 'Anna'},
@@ -49,10 +52,12 @@ function App() {
         </div>
         <div className='card-body'>
           <TodoTable todos={todos} deleteTodo={deleteTodo}></TodoTable>
-          <button className='btn btn-primary'>
-            Add new todo
+          <button onClick={() => setShowAddTodoForm(!showAddTodoForm)} className='btn btn-primary'>
+            {showAddTodoForm ? 'Hide Form' : 'Add New Todo'}
           </button>
-          <NewTodoForm addTodo={addTodo}/>
+          {showAddTodoForm && 
+            <NewTodoForm addTodo={addTodo}/>
+          }
         </div>
       </div>
     </div>
